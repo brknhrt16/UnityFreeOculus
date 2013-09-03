@@ -77,28 +77,120 @@
     function OnGUI ()
     {
         GUI.SetNextControlName ("Tutorial");
-        if (GUI.Button(Rect(10,70,170,30), "Button 1 (tutorial,id:0)")) {
+        var leftx = Screen.width / 4.0 - 0.1 * Screen.width;
+        var rightx = 3.0 * Screen.width / 4.0 - 0.08 * Screen.width - 0.1 * Screen.width;
+        var sizey = 30;
+        var y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
             selectedIndex = 0;
             handleSelection();
         }
-     
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 1 (tutorial,id:0)")) {
+            selectedIndex = 0;
+            handleSelection();
+        }
+        
+        y = Screen.height / 2.0 - sizey / 2.0;
+        
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
+            selectedIndex = 0;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 1 (tutorial,id:0)")) {
+            selectedIndex = 0;
+            handleSelection();
+        }
+        
+        y = Screen.height / 2.0 - sizey / 2.0 + 0.2 * Screen.height;
+        
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
+            selectedIndex = 0;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 1 (tutorial,id:0)")) {
+            selectedIndex = 0;
+            handleSelection();
+        }
+        
+        // NEXT ELEMENT
+        
+        leftx = Screen.width / 4.0;
+        rightx = 3.0 * Screen.width / 4.0 - 0.08 * Screen.width;
         GUI.SetNextControlName ("Play");
-        if (GUI.Button(Rect(10,100,170,30), "Button 2 (play, id:1)")) {
+        
+        y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 2 (play, id:1)")) {
             selectedIndex = 1;
             handleSelection();
         }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 2 (play, id:1)")) {
+            selectedIndex = 1;
+            handleSelection();
+        }
+        
+        y = Screen.height / 2.0 - sizey / 2.0;
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 2 (play, id:1)")) {
+            selectedIndex = 1;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 2 (play, id:1)")) {
+            selectedIndex = 1;
+            handleSelection();
+        }
+        
+        y = Screen.height / 2.0 - sizey / 2.0 + 0.2 * Screen.height;
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 2 (play, id:1)")) {
+            selectedIndex = 1;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 2 (play, id:1)")) {
+            selectedIndex = 1;
+            handleSelection();
+        }
+        
      
+     // NEXT ELEMENT
+        leftx = Screen.width / 4.0 + 0.1 * Screen.width;
+        rightx = 3.0 * Screen.width / 4.0 - 0.08 * Screen.width + 0.1 * Screen.width;
         GUI.SetNextControlName ("High Scores");
-        if (GUI.Button(Rect(10,130,170,30), "Button 3 (high scores, id:2)")) {
+        
+        y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        y = Screen.height / 2.0 - sizey / 2.0;
+         if (GUI.Button(Rect(leftx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        y = Screen.height / 2.0 - sizey / 2.0 + 0.2 * Screen.height;
+         if (GUI.Button(Rect(leftx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 3 (high scores, id:2)")) {
             selectedIndex = 2;
             handleSelection();
         }
      
-        GUI.SetNextControlName ("Exit");
-        if (GUI.Button(Rect(10,160,170,30), "Button 4 (exit, id:3)")) {
+       /* GUI.SetNextControlName ("Exit");
+        if (GUI.Button(Rect(leftx,Screen.height / 2.0,170,30), "Button 4 (exit, id:3)")) {
             selectedIndex = 3;
             handleSelection();
         }
+        if (GUI.Button(Rect(rightx,Screen.height / 2.0,170,30), "Button 4 (exit, id:3)")) {
+            selectedIndex = 3;
+            handleSelection();
+        }*/
      
         GUI.FocusControl (menuOptions[selectedIndex]);
     }
