@@ -14,6 +14,10 @@ public class HMDGUI : MonoBehaviour
      
     int selectedIndex = 0;
      
+	
+	float IPD = 0.078f;
+	float zdist = 0.0f;
+	
     // Function to scroll through possible menu items array, looping back to start/end depending on direction of movement.
      
     int menuSelection (string[] menuItems, int selectedItem, string direction) {
@@ -48,6 +52,14 @@ public class HMDGUI : MonoBehaviour
         if (Input.GetKeyDown("up")) {
             selectedIndex = menuSelection(menuOptions, selectedIndex, "up");
         }
+		
+		if (Input.GetKeyDown("left")) {
+            zdist += 0.001f;
+        }
+     
+        if (Input.GetKeyDown("right")) {
+            zdist -= 0.001f;
+        }
      
         if (Input.GetKeyDown("space")) {   
             handleSelection();
@@ -81,8 +93,8 @@ public class HMDGUI : MonoBehaviour
     void OnGUI ()
     {
         GUI.SetNextControlName ("Tutorial");
-        int leftx = (int)(Screen.width / 4.0 - 0.1 * Screen.width);
-        int rightx = (int)(3.0 * Screen.width / 4.0 - 0.08 * Screen.width - 0.1 * Screen.width);
+        int leftx = (int)(Screen.width / 4.0 - zdist*Screen.width);
+        int rightx = (int)(3.0 * Screen.width / 4.0 - IPD * Screen.width + zdist*Screen.width);
         int sizey = 30;
         int y = (int)(Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height);
         if (GUI.Button(new Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
@@ -115,11 +127,11 @@ public class HMDGUI : MonoBehaviour
             selectedIndex = 0;
             handleSelection();
         }
-        
+        /*
         // NEXT ELEMENT
         
         leftx = (int)(Screen.width / 4.0);
-        rightx = (int)(3.0 * Screen.width / 4.0 - 0.08 * Screen.width);
+        rightx = (int)(3.0 * Screen.width / 4.0 - IPD * Screen.width);
         GUI.SetNextControlName ("Play");
         
         y = (int)(Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height);
@@ -152,15 +164,39 @@ public class HMDGUI : MonoBehaviour
             handleSelection();
         }
      
-       /* GUI.SetNextControlName ("Exit");
-        if (GUI.Button(Rect(leftx,Screen.height / 2.0,170,30), "Button 4 (exit, id:3)")) {
-            selectedIndex = 3;
+       // NEXT ELEMENT
+        leftx = Screen.width / 4.0 + 0.1 * Screen.width;
+        rightx = 3.0 * Screen.width / 4.0 - IPD * Screen.width + 0.1 * Screen.width;
+        GUI.SetNextControlName ("High Scores");
+        
+        y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
+        if (GUI.Button(Rect(leftx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
             handleSelection();
         }
-        if (GUI.Button(Rect(rightx,Screen.height / 2.0,170,30), "Button 4 (exit, id:3)")) {
-            selectedIndex = 3;
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
             handleSelection();
-        }*/
+        }
+        y = Screen.height / 2.0 - sizey / 2.0;
+         if (GUI.Button(Rect(leftx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        y = Screen.height / 2.0 - sizey / 2.0 + 0.2 * Screen.height;
+         if (GUI.Button(Rect(leftx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+        if (GUI.Button(Rect(rightx,y,30,30), "Button 3 (high scores, id:2)")) {
+            selectedIndex = 2;
+            handleSelection();
+        }
+		*/
      
         GUI.FocusControl (menuOptions[selectedIndex]);
     }
