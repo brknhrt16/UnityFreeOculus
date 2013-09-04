@@ -6,6 +6,8 @@
     menuOptions[2] = "High Scores";
     menuOptions[3] = "Exit";
      
+    var IPD = 0.08;
+    var zdist = 0.0;
     // Default selected menu item (in this case, Tutorial).
      
     var selectedIndex = 0;
@@ -44,6 +46,14 @@
         if (Input.GetKeyDown("up")) {
             selectedIndex = menuSelection(menuOptions, selectedIndex, "up");
         }
+        
+        if (Input.GetKeyDown("left")) {
+            zdist += 0.001;
+        }
+     
+        if (Input.GetKeyDown("right")) {
+            zdist -= 0.001;
+        }
      
         if (Input.GetKeyDown("space")) {   
             handleSelection();
@@ -77,9 +87,12 @@
     function OnGUI ()
     {
         GUI.SetNextControlName ("Tutorial");
-        var leftx = Screen.width / 4.0 - 0.1 * Screen.width;
-        var rightx = 3.0 * Screen.width / 4.0 - 0.08 * Screen.width - 0.1 * Screen.width;
+        var leftx = Screen.width / 4.0 - zdist*Screen.width;
+        var rightx = 3.0 * Screen.width / 4.0 - IPD * Screen.width + zdist*Screen.width;
         var sizey = 30;
+        var sizex = 30;
+       /* leftx -= sizex / 2.0;
+        rightx -= sizex / 2.0;*/
         var y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
         if (GUI.Button(Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
             selectedIndex = 0;
@@ -113,9 +126,9 @@
         }
         
         // NEXT ELEMENT
-        
+       /* 
         leftx = Screen.width / 4.0;
-        rightx = 3.0 * Screen.width / 4.0 - 0.08 * Screen.width;
+        rightx = 3.0 * Screen.width / 4.0 - IPD * Screen.width;
         GUI.SetNextControlName ("Play");
         
         y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
@@ -151,7 +164,7 @@
      
      // NEXT ELEMENT
         leftx = Screen.width / 4.0 + 0.1 * Screen.width;
-        rightx = 3.0 * Screen.width / 4.0 - 0.08 * Screen.width + 0.1 * Screen.width;
+        rightx = 3.0 * Screen.width / 4.0 - IPD * Screen.width + 0.1 * Screen.width;
         GUI.SetNextControlName ("High Scores");
         
         y = Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height;
@@ -181,7 +194,7 @@
             selectedIndex = 2;
             handleSelection();
         }
-     
+     */
        /* GUI.SetNextControlName ("Exit");
         if (GUI.Button(Rect(leftx,Screen.height / 2.0,170,30), "Button 4 (exit, id:3)")) {
             selectedIndex = 3;
