@@ -15,8 +15,9 @@ public class HMDGUI : MonoBehaviour
     int selectedIndex = 0;
      
 	
-	float IPD = 0.078f;
+	float IPD = 0.08f;
 	float zdist = 0.0f;
+	float screenvc = Screen.height/2.0f;
 	
     // Function to scroll through possible menu items array, looping back to start/end depending on direction of movement.
      
@@ -61,7 +62,7 @@ public class HMDGUI : MonoBehaviour
             zdist -= 0.001f;
         }
      
-        if (Input.GetKeyDown("space")) {   
+        if (Input.GetKeyDown("space") || Input.GetKeyDown("enter")) {   
             handleSelection();
         }
     }
@@ -74,6 +75,9 @@ public class HMDGUI : MonoBehaviour
         {
             case 0:  
                    Debug.Log("Selected name: " + GUI.GetNameOfFocusedControl () + " / id: " +selectedIndex);
+				   TextMesh mesh = (TextMesh) GameObject.Find("Hearts").GetComponent<TextMesh>();
+				   if(mesh != null)
+						mesh.text += "<3";
                    break;
             case 1:
                    Debug.Log("Selected name: " + GUI.GetNameOfFocusedControl () + " / id: " +selectedIndex);
@@ -96,7 +100,7 @@ public class HMDGUI : MonoBehaviour
         int leftx = (int)(Screen.width / 4.0 - zdist*Screen.width);
         int rightx = (int)(3.0 * Screen.width / 4.0 - IPD * Screen.width + zdist*Screen.width);
         int sizey = 30;
-        int y = (int)(Screen.height / 2.0 - sizey / 2.0 - 0.2 * Screen.height);
+        int y = (int)(screenvc - sizey / 2.0 - 0.2 * Screen.height);
         if (GUI.Button(new Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
             selectedIndex = 0;
             handleSelection();
@@ -106,7 +110,7 @@ public class HMDGUI : MonoBehaviour
             handleSelection();
         }
         
-        y = (int)(Screen.height / 2.0 - sizey / 2.0);
+        y = (int)(screenvc - sizey / 2.0);
         
         if (GUI.Button(new Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
             selectedIndex = 0;
@@ -117,7 +121,7 @@ public class HMDGUI : MonoBehaviour
             handleSelection();
         }
         
-        y = (int)(Screen.height / 2.0 - sizey / 2.0 + 0.2 * Screen.height);
+        y = (int)(screenvc - sizey / 2.0 + 0.2 * Screen.height);
         
         if (GUI.Button(new Rect(leftx,y,30,30), "Button 1 (tutorial,id:0)")) {
             selectedIndex = 0;
