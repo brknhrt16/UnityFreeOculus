@@ -1,23 +1,31 @@
 using UnityEngine;
 public class HMDGUI : MonoBehaviour
 {
-	// Array of menu item control names.
-    string[] menuOptions = new string[]
+	void Start()
 	{
-		"Tutorial",
-		"Play",
-		"High Scores",
-		"Exit"
-	};
+		menuOptions = new string[]
+		{
+			"Tutorial",
+			"Play",
+			"High Scores",
+			"Exit"
+		};
+		selectedIndex = 0;
+		IPD = 0.08f;
+		zdist = 0.0f;
+		screenvc = Screen.height/2.0f;
+	}
+	// Array of menu item control names.
+    string[] menuOptions;
      
     // Default selected menu item (in this case, Tutorial).
      
-    int selectedIndex = 0;
+    int selectedIndex;
      
 	
-	float IPD = 0.08f;
-	float zdist = 0.0f;
-	float screenvc = Screen.height/2.0f;
+	float IPD;
+	float zdist;
+	float screenvc;
 	
     // Function to scroll through possible menu items array, looping back to start/end depending on direction of movement.
      
