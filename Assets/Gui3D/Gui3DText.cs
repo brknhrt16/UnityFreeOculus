@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace Gui3D
 {
-	public class Gui3DText : Gui3DComponent
+	/*public class Gui3DText : Gui3DComponent
 	{
-		public Gui3DText (Rect boundingBox, float depth, string text)
+		public Gui3DText (string name, Rect boundingBox, float depth, string text)
 		{
-			gameObject = new GameObject("TextField");
+			this.name = name;
+			gameObject = guiObject.AddComponent TextField>();
 			gameObject.AddComponent<TextMesh>();
 			gameObject.AddComponent<MeshRenderer>();
 			MeshRenderer meshRender = gameObject.GetComponent<MeshRenderer>();
@@ -19,6 +20,12 @@ namespace Gui3D
 			gameObject.transform.localScale = new Vector3(boundingBox.width, boundingBox.height, 1);
 			this.boundingBox = boundingBox;
 			this.depth = depth;
+		}
+		
+		public string name
+		{
+			get;
+			private set;
 		}
 		
 		public Rect boundingBox
@@ -38,6 +45,6 @@ namespace Gui3D
 			private set;
 			get;
 		}
-	}
+	}*/
 }
 

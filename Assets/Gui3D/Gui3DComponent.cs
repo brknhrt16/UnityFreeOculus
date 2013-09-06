@@ -3,24 +3,8 @@ using UnityEngine;
 
 namespace Gui3D
 {
-	public interface Gui3DComponent
+	public class Gui3DComponent : MonoBehaviour
 	{
-		Rect boundingBox
-		{
-			get;
-			set;
-		}
-		
-		float depth
-		{
-			get;
-			set;
-		}
-		
-		GameObject gameObject
-		{
-			get;
-		}
 	}
 }
 
