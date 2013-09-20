@@ -27,6 +27,8 @@ using System.Runtime.InteropServices;
 //
 public class OVRCamera : OVRComponent
 {	
+	public bool HeadTrack = true;
+	
 	#region Member Variables
 	// PRIVATE MEMBERS
 	// If CameraTextureScale is not 1.0f, we will render to this texture 
@@ -123,6 +125,8 @@ public class OVRCamera : OVRComponent
 	// OnPreCull
 	void OnPreCull()
 	{
+		if(!HeadTrack)
+			return;
 		// NOTE: Setting the camera here increases latency, but ensures
 		// that all Unity sub-systems that rely on camera location before
 		// being set to render are satisfied. 
@@ -136,7 +140,7 @@ public class OVRCamera : OVRComponent
 	{
 		// NOTE: Better latency performance here, but messes up water rendering and other
 		// systems that rely on the camera to be set before PreCull takes place.
-		if(CameraController.CallInPreRender == true)
+		if((CameraController.CallInPreRender == true) && HeadTrack)
 			SetCameraOrientation();
 		
 		if(CameraController.WireMode == true)
