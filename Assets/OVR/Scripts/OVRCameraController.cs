@@ -27,9 +27,12 @@ using System.Collections.Generic;
 //
 public class OVRCameraController : OVRComponent
 {		
+	
+	public Camera CameraLeft = null;
+	public Camera CameraRight = null;
+	
 	// PRIVATE MEMBERS
 	private bool   UpdateCamerasDirtyFlag = false;	
-	private Camera CameraLeft, CameraRight = null;
 	private float  LensOffsetLeft, LensOffsetRight = 0.0f;  // normalized screen space
 	private float  AspectRatio = 1.0f;						
 	private float  DistK0, DistK1, DistK2, DistK3 = 0.0f; 	// lens distortion parameters
@@ -58,9 +61,11 @@ public class OVRCameraController : OVRComponent
 		set{verticalFOV = value; UpdateCamerasDirtyFlag = true;}
 	}
 	
+	// CAMERAS	
+	
 	// Camera positioning:
 	// CameraRootPosition will be used to calculate NeckPosition and Eye Height
-	public Vector3 		CameraRootPosition = new Vector3(0.0f, 1.0f, 0.0f);					
+	public Vector3 		CameraRootPosition = new Vector3(0.0f, 1.0f, 0.0f);
 	// From CameraRootPosition to neck
 	public Vector3 		NeckPosition      = new Vector3(0.0f, 0.7f,  0.0f);	
 	// From neck to eye (rotation and translation; x will be different for each eye, based on IPD)
@@ -77,6 +82,8 @@ public class OVRCameraController : OVRComponent
 	
 	// Set to true if we want the rotation of the camera controller to be influenced by tracker
 	public bool  		TrackerRotatesY	= false;
+	
+	public bool  		TrackerRotatesM	= false;
 	
 	public bool    		PortraitMode 	 = false; // We currently default to landscape mode for render
 	private bool 		PrevPortraitMode = false;
@@ -130,10 +137,10 @@ public class OVRCameraController : OVRComponent
 		
 		for (int i = 0; i < cameras.Length; i++)
 		{
-			if(cameras[i].name == "CameraLeft")
+			if((cameras[i].name == "CameraLeft") && (CameraLeft == null))
 				CameraLeft = cameras[i];
 			
-			if(cameras[i].name == "CameraRight")
+			if((cameras[i].name == "CameraRight") && (CameraRight == null))
 				CameraRight = cameras[i];
 		}
 		

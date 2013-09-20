@@ -52,6 +52,14 @@ public class OVRCameraControllerEditor : Editor
 
 		{
 #if CUSTOM_LAYOUT
+			OVREditorGUIUtility.Separator();
+			m_Component.CameraLeft = EditorGUILayout.ObjectField("Camera Left", 
+																		m_Component.CameraLeft,
+																		typeof(Camera), true) as Camera;
+			m_Component.CameraRight = EditorGUILayout.ObjectField("Camera Right", 
+																		m_Component.CameraRight,
+																		typeof(Camera), true) as Camera;
+			
 			OVREditorGUIUtility.Separator();			
 			
 			m_Component.VerticalFOV         = EditorGUILayout.FloatField("Vertical FOV", m_Component.VerticalFOV);
