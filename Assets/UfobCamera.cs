@@ -76,6 +76,11 @@ public class UfobCamera : MonoBehaviour
 		}
 	}
 	
+	/*Vector3 ScreenToWorldPoint(Vector3 position)
+	{
+		this.GetGui3D();
+	}*/
+	
 	// Update is called once per frame
 	void Update () 
 	{
