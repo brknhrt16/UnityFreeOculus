@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Gui3D
 {
-	public class Gui3DMenu : MonoBehaviour 
+	public class Gui3DMenu : Gui3DObject 
 	{
 		public bool UseMenuIndex = false;
 		public List<GameObject> MenuObjects;
