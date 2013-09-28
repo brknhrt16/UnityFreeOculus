@@ -101,8 +101,9 @@ namespace Gui3D
 			{
 				if(child.gameObject.GetComponent<Gui3DObject>() != null)
 				{
-					if((child.gameObject.GetComponent<Gui3DObject>()).Selectable == true)
+					if(child.gameObject.GetComponent<Gui3DObject>().Selectable == true)
 					{
+						child.gameObject.GetComponent<Gui3DObject>().Deselect();
 						MenuObjects.Add(child.gameObject);
 					}
 				}
