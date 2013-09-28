@@ -23,47 +23,25 @@ namespace Gui3D {
 		void Update () {
 			if (ClickPress)
 			{
-				// Ray
-				Ray ray = new Ray(GetGui3D().GuiCamera.gameObject.transform.position, GetGui3D().Cursor.transform.position);
-				
-				// Raycast Hit
-				RaycastHit hit;
-				
-				// TODO: Create object that dispatches click events rather than casting n rays.
-				if (Input.GetMouseButtonUp(0) && Physics.Raycast(ray, out hit, 1000))
+				if (Input.GetMouseButtonUp(0) && GetGui3D().HoverObject == this)
 				{
-					// If we click it
-					if (hit.transform.gameObject == gameObject)
+					// Notify of the event!
+					OnPush();
+				}
+			}
+			if (HoverPress)
+			{
+				if (GetGui3D().HoverObject == this)
+				{
+					if (hoverStartTime - Time.time >= HoverDelaySeconds)
 					{
 						// Notify of the event!
 						OnPush();
 					}
 				}
-			}
-			if (HoverPress)
-			{
-				// Ray
-				Ray ray = new Ray(GetGui3D().GuiCamera.gameObject.transform.position, GetGui3D().Cursor.transform.position);
-				
-				// Raycast Hit
-				RaycastHit hit;
-				
-				// TODO: Create object that dispatches click events rather than casting n rays.
-				if (Physics.Raycast(ray, out hit, 1000))
+				else
 				{
-					// If we click it
-					if (hit.transform.gameObject == gameObject)
-					{
-						if (hoverStartTime - Time.time >= HoverDelaySeconds)
-						{
-							// Notify of the event!
-							OnPush();
-						}
-					}
-					else
-					{
-						hoverStartTime = Time.time;
-					}
+					hoverStartTime = Time.time;
 				}
 			}
 			if (InputName != null)
