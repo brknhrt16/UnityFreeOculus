@@ -8,8 +8,8 @@ namespace Gui3D {
 		public bool ClickPress = false;
 		public string InputName = null;
 		
-		private int hoverStartTime = 0;
-		public int HoverDelayMilliseconds = 2000;
+		private float hoverStartTime = 0;
+		public float HoverDelaySeconds = 2;
 		
 		public delegate void OnPushEvent();
 		public event OnPushEvent OnPush;
@@ -54,7 +54,7 @@ namespace Gui3D {
 					// If we click it
 					if (hit.transform.gameObject == gameObject)
 					{
-						if (hoverStartTime - Time.time >= HoverDelayMilliseconds)
+						if (hoverStartTime - Time.time >= HoverDelaySeconds)
 						{
 							// Notify of the event!
 							OnPush();
