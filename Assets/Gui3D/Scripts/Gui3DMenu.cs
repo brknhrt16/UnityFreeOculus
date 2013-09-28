@@ -11,9 +11,10 @@ namespace Gui3D
 		
 		public string NextButton = "MenuNext";
 		public string PreviousButton = "MenuPrevious";
-		public string SelectButton = "MenuSelect";
 		
 		public bool Wrap = true;
+		
+		public bool UseMouse = true;
 		
 		private int SelectedIndex = 0;
 		
@@ -35,10 +36,13 @@ namespace Gui3D
 		// Update is called once per frame
 		void Update () 
 		{
-			if(MenuObjects.Count > 0)
+			if((MenuObjects.Count <= 0) || Locked)
 			{
 				return;
 			}
+			
+			MenuObjects[SelectedIndex].GetComponent<Gui3DObject>().Deselect();
+				
 			if(Input.GetButtonDown(NextButton))
 			{
 				UpdateIndex(1);
@@ -47,6 +51,19 @@ namespace Gui3D
 			{
 				UpdateIndex(-1);
 			}
+			
+			if(UseMouse)
+			{
+				GameObject hoverobj = MenuObjects.Find(obj => obj.gameObject.name == GetGui3D().HoverObject.gameObject.name);
+				if(hoverobj != null)
+				{
+					SelectedIndex = MenuObjects.IndexOf(hoverobj);
+				}
+			}
+			
+			MenuObjects[SelectedIndex].GetComponent<Gui3DObject>().Select();
+			
+			
 		}
 		
 		void UpdateIndex(int increment)
