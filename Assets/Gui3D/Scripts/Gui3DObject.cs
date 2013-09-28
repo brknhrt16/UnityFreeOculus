@@ -37,12 +37,12 @@ namespace Gui3D
 			return Gui;
 		}
 		
-		void Select()
+		public void Select()
 		{
 			Selected = true;
 		}
 		
-		void Deselect()
+		public void Deselect()
 		{
 			Selected = false;
 		}
