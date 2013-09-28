@@ -9,6 +9,16 @@ namespace Gui3D
 		public bool UseMenuIndex = false;
 		public List<GameObject> MenuObjects;
 		
+		public string NextButton = "MenuNext";
+		public string PreviousButton = "MenuPrevious";
+		public string SelectButton = "MenuSelect";
+		
+		public bool Wrap = true;
+		
+		private int SelectedIndex = 0;
+		
+		private bool Locked = false;
+		
 		// Use this for initialization
 		void Start () 
 		{
@@ -25,7 +35,40 @@ namespace Gui3D
 		// Update is called once per frame
 		void Update () 
 		{
+			if(MenuObjects.Count > 0)
+			{
+				return;
+			}
+			if(Input.GetButtonDown(NextButton))
+			{
+				UpdateIndex(1);
+			}
+			else if(Input.GetButtonDown(PreviousButton))
+			{
+				UpdateIndex(-1);
+			}
+		}
+		
+		void UpdateIndex(int increment)
+		{
+			SelectedIndex += increment;
 			
+			if(SelectedIndex < 0)
+			{
+				if(Wrap)
+				{
+					SelectedIndex = MenuObjects.Count - 1;
+				}
+				else SelectedIndex = 0;
+			}
+			else if(SelectedIndex > MenuObjects.Count - 1)
+			{
+				if(Wrap)
+				{
+					SelectedIndex = 0;
+				}
+				else SelectedIndex = MenuObjects.Count - 1;
+			}
 		}
 		
 		void FillMenuByIndex()

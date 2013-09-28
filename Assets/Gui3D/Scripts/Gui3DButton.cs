@@ -2,7 +2,8 @@
 using System.Collections;
 
 namespace Gui3D {
-	public class Gui3DButton : Gui3DObject {
+	public class Gui3DButton : Gui3DObject 
+	{
 		
 		public bool HoverPress = false;
 		public bool ClickPress = false;
@@ -13,13 +14,16 @@ namespace Gui3D {
 		public delegate void OnPushEvent();
 		public event OnPushEvent OnPush;
 		
+		
 		// Use this for initialization
-		void Start () {
+		void Start () 
+		{
 			
 		}
 		
 		// Update is called once per frame
-		void Update () {
+		void Update () 
+		{
 			if (HoverPress)
 			{
 				// Ray

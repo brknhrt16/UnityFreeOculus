@@ -9,6 +9,7 @@ namespace Gui3D
 		public bool Selectable = false;
 		public bool Selected = false;
 		
+		
 		/// <summary>
 		/// Gets the Gui3D containing this object.
 		/// </summary>
@@ -34,6 +35,16 @@ namespace Gui3D
 			}
 			// TODO: Allow multiple Gui3Ds by traversing parents?
 			return Gui;
+		}
+		
+		void Select()
+		{
+			Selected = true;
+		}
+		
+		void Deselect()
+		{
+			Selected = false;
 		}
 	}
 }
