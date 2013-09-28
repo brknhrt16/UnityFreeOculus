@@ -9,7 +9,7 @@ public class UfobCamera : MonoBehaviour
 	public GameObject [] NonHmdObjects;
 	
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		if(!OverrideToHmdMode)
 		{
