@@ -56,7 +56,7 @@ namespace Gui3D
 				// Raycast Hit
 				RaycastHit hit;
 				
-				if (Physics.Raycast(ray, out hit, 1000))
+				if (Physics.Raycast(ray, out hit, 1000, 1 << LayerMask.NameToLayer("Gui3D")))
 				{
 					print (hit.transform.gameObject);
 					HoverObject = hit.transform.gameObject.GetComponent<Gui3DObject>();
