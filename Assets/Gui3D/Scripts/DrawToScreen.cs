@@ -63,8 +63,6 @@ namespace Gui3D
 					clampedRect.width / imageRect.width,
 					clampedRect.height / imageRect.height);
 				
-				print (texCoordRect);
-				
 				if (clampedRect.width > 0 && clampedRect.height > 0)
 				{
 					GUI.DrawTextureWithTexCoords(clampedRect, Image, texCoordRect);
