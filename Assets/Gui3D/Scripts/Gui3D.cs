@@ -10,7 +10,7 @@ namespace Gui3D
 		public bool MoveCursorWithMouse = true;
 	    public GameObject Cursor;
 		
-		private Camera[] guiCameras;
+		public Camera[] GuiCameras;
 		
 		public Gui3DObject HoverObject
 		{
@@ -20,7 +20,7 @@ namespace Gui3D
 		
 		void Start()
 		{
-			guiCameras = this.GetComponentsInChildren<Camera>();
+			GuiCameras = this.GetComponentsInChildren<Camera>();
 		}
 		
 		void Update()
@@ -28,7 +28,7 @@ namespace Gui3D
 			Camera guiCamera = null;
 			if (MoveCursorWithMouse)
 			{
-				foreach (Camera guiCam in guiCameras)
+				foreach (Camera guiCam in GuiCameras)
 				{
 					if (guiCam.pixelRect.Contains(new Vector2(Input.mousePosition.x, Input.mousePosition.y)))
 					{
@@ -38,7 +38,7 @@ namespace Gui3D
 			}
 			else
 			{
-				guiCamera = guiCameras[0];
+				guiCamera = GuiCameras[0];
 			}
 			
 			if (UseCursor == true && guiCamera != null)
