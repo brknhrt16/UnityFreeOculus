@@ -8,6 +8,7 @@ namespace Gui3D
 	{
 		public bool UseCursor = true;
 		public bool MoveCursorWithMouse = true;
+		public bool HideMouse = true;
 	    public GameObject Cursor;
 		
 		public Camera[] GuiCameras;
@@ -39,6 +40,15 @@ namespace Gui3D
 		
 		void Update()
 		{
+			if(HideMouse)
+			{
+				Screen.showCursor = false;
+			}
+			else
+			{
+				Screen.showCursor = true;
+			}
+			
 			Camera guiCamera = null;
 			if (MoveCursorWithMouse)
 			{

@@ -25,6 +25,7 @@ namespace Gui3D
 				Offset.x = -Image.width / 2f;	
 				Offset.y = -Image.height / 2f;
 			}
+			
 		}
 		
 		// Update is called once per frame
