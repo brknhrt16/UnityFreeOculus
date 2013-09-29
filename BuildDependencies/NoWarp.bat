@@ -1,5 +1,5 @@
 rename d3d9.dll d3d9.dll.disabled
 for %%f in (*.exe) do (
-	start %%f
+	start %%f -hmd off
 	exit
 )
