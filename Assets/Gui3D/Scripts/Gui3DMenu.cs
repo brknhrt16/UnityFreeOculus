@@ -54,10 +54,13 @@ namespace Gui3D
 			
 			if(UseMouse)
 			{
-				GameObject hoverobj = MenuObjects.Find(obj => obj.gameObject == GetGui3D().HoverObject.gameObject);
-				if(hoverobj != null)
+				if (GetGui3D().HoverObject != null)
 				{
-					SelectedIndex = MenuObjects.IndexOf(hoverobj);
+					GameObject hoverobj = MenuObjects.Find(obj => obj == GetGui3D().HoverObject.gameObject);
+					if(hoverobj != null)
+					{
+						SelectedIndex = MenuObjects.IndexOf(hoverobj);
+					}
 				}
 			}
 			

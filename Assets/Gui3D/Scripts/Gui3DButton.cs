@@ -6,13 +6,44 @@ namespace Gui3D {
 		
 		public bool HoverPress = false;
 		public bool ClickPress = false;
-		public string InputName = null;
+		public string InputName = "";
 		
 		private float hoverStartTime = 0;
 		public float HoverDelaySeconds = 2;
 		
 		public delegate void OnPushEvent();
 		public event OnPushEvent OnPush;
+		
+		/// <summary>
+		/// Push this button, notifying all handlers.
+		/// </summary>
+		public void Push()
+		{
+			if (OnPush != null)
+			{
+				OnPush();
+			}
+		}
+		
+		bool IsHovering()
+		{
+			if (GetGui3D().HoverObject == this)
+			{
+				return true;
+			}
+			else
+			{
+				Gui3DObject[] guiObjects = gameObject.GetComponentsInChildren<Gui3DObject>();
+				foreach (Gui3DObject guiObject in guiObjects)
+				{
+					if (guiObject == GetGui3D().HoverObject)
+					{
+						return true;
+					}
+				}
+			}
+			return false;
+		}
 		
 		// Use this for initialization
 		void Start () {
@@ -23,20 +54,21 @@ namespace Gui3D {
 		void Update () {
 			if (ClickPress)
 			{
-				if (Input.GetMouseButtonUp(0) && GetGui3D().HoverObject == this)
+				if (IsHovering() && Input.GetMouseButtonUp(0))
 				{
 					// Notify of the event!
-					OnPush();
+					Push();
 				}
 			}
 			if (HoverPress)
 			{
-				if (GetGui3D().HoverObject == this)
+				if (IsHovering())
 				{
-					if (hoverStartTime - Time.time >= HoverDelaySeconds)
+					if (Time.time - hoverStartTime >= HoverDelaySeconds)
 					{
 						// Notify of the event!
-						OnPush();
+						Push();
+						hoverStartTime = Time.time;
 					}
 				}
 				else
@@ -44,11 +76,11 @@ namespace Gui3D {
 					hoverStartTime = Time.time;
 				}
 			}
-			if (InputName != null)
+			if (InputName != "")
 			{
 				if (Selected == true && Input.GetButtonUp(InputName))
 				{
-					OnPush();
+					Push();
 				}
 			}
 		}

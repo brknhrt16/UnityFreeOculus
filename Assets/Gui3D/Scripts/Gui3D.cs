@@ -18,6 +18,20 @@ namespace Gui3D
 			get;
 		}
 		
+		Gui3DObject GetContainingGuiObject(GameObject obj)
+		{
+			Gui3DObject guiObject = obj.GetComponent<Gui3DObject>();
+			if (guiObject != null)
+			{
+				return guiObject;
+			}
+			if (obj.transform.parent == null)
+			{
+				return null;
+			}
+			return GetContainingGuiObject(obj.transform.parent.gameObject);
+		}
+		
 		void Start()
 		{
 			GuiCameras = this.GetComponentsInChildren<Camera>();
@@ -58,14 +72,7 @@ namespace Gui3D
 				
 				if (Physics.Raycast(ray, out hit, 1000, 1 << LayerMask.NameToLayer("Gui3D")))
 				{
-					print (hit.transform.gameObject);
-					HoverObject = hit.transform.gameObject.GetComponent<Gui3DObject>();
-					if (HoverObject != null) 
-					{
-						Vector3 newPosition = HoverObject.gameObject.transform.position;
-						newPosition.y += .1f;
-						HoverObject.gameObject.transform.position = newPosition;
-					}
+					HoverObject = GetContainingGuiObject(hit.transform.gameObject);
 				}
 				else
 				{
