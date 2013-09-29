@@ -37,7 +37,7 @@ public class UfobCamera : MonoBehaviour
 	
 	void GetHmdMode()
 	{
-		HmdMode = false;
+		HmdMode = PlayerPrefs.GetInt("HmdMode", 0) == 1 ? true : false;
 		string [] args = System.Environment.GetCommandLineArgs();
 		foreach(string arg in args)
 		{
@@ -45,7 +45,13 @@ public class UfobCamera : MonoBehaviour
 			{
 				HmdMode = true;
 			}
+			if(arg == "off")
+			{
+				HmdMode = false;
+			}
 		}
+		PlayerPrefs.SetInt("HmdMode", HmdMode ? 1 : 0);
+		PlayerPrefs.Save();
 	}
 	
 	void GetHmdObjects()
