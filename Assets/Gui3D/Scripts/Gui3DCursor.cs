@@ -7,6 +7,7 @@ namespace Gui3D
 	{
 		
 		public bool MoveCursorWithMouse = true;
+		public bool CenterCursor = false;
 		
 		// Use this for initialization
 		void Start () {
@@ -23,6 +24,14 @@ namespace Gui3D
 				if (guiCamera)
 				{
 					transform.position = guiCamera.ScreenToWorldPoint(projectionPosition);
+				}
+			}
+			else if (CenterCursor)
+			{
+				Camera guiCamera = GetGui3D().GetMouseCamera();
+				if (guiCamera)
+				{
+					transform.position = guiCamera.transform.position + guiCamera.transform.forward.normalized * 1000;
 				}
 			}
 		}
