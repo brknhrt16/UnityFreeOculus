@@ -7,7 +7,6 @@ namespace Gui3D
 	public class Gui3D : MonoBehaviour
 	{
 		public bool UseCursor = true;
-		public bool MoveCursorWithMouse = true;
 		public bool HideMouse = true;
 	    public GameObject Cursor;
 		
@@ -17,6 +16,31 @@ namespace Gui3D
 		{
 			private set;
 			get;
+		}
+		
+		/// <summary>
+		/// Gets the camera containing the mouse if any, else an arbitrary camera.
+		/// </summary>
+		/// <returns>
+		/// A camera.
+		/// </returns>
+		public Camera GetMouseCamera()
+		{
+			if (Cursor.GetComponent<Gui3DCursor>().MoveCursorWithMouse)
+			{
+				foreach (Camera guiCam in GuiCameras)
+				{
+					if (guiCam.pixelRect.Contains(new Vector2(Input.mousePosition.x, Input.mousePosition.y)))
+					{
+						return guiCam;
+					}
+				}
+			}
+			else
+			{
+				return GuiCameras[0];
+			}
+			return null;
 		}
 		
 		Gui3DObject GetContainingGuiObject(GameObject obj)
@@ -49,44 +73,23 @@ namespace Gui3D
 				Screen.showCursor = true;
 			}
 			
-			Camera guiCamera = null;
-			if (MoveCursorWithMouse)
+			HoverObject = null;
+			if (UseCursor == true && Cursor != null)
 			{
-				foreach (Camera guiCam in GuiCameras)
+				Camera guiCamera = GetMouseCamera();
+				if (guiCamera != null)
 				{
-					if (guiCam.pixelRect.Contains(new Vector2(Input.mousePosition.x, Input.mousePosition.y)))
+					// Ray
+					Vector3 projectedPosition = guiCamera.WorldToScreenPoint(Cursor.transform.position);
+					Ray ray = guiCamera.ScreenPointToRay(projectedPosition);
+					
+					// Raycast Hit
+					RaycastHit hit;
+					
+					if (Physics.Raycast(ray, out hit, 1000, 1 << LayerMask.NameToLayer("Gui3D")))
 					{
-						guiCamera = guiCam;
+						HoverObject = GetContainingGuiObject(hit.transform.gameObject);
 					}
-				}
-			}
-			else
-			{
-				guiCamera = GuiCameras[0];
-			}
-			
-			if (UseCursor == true && guiCamera != null)
-			{
-				// Ray
-				if (MoveCursorWithMouse)
-				{
-					Vector3 projectionPosition = Input.mousePosition;
-					projectionPosition.z = 1000;
-					Cursor.transform.position = guiCamera.ScreenToWorldPoint(projectionPosition);
-				}
-				Vector3 projectedPosition = guiCamera.WorldToScreenPoint(Cursor.transform.position);
-				Ray ray = guiCamera.ScreenPointToRay(projectedPosition);
-				
-				// Raycast Hit
-				RaycastHit hit;
-				
-				if (Physics.Raycast(ray, out hit, 1000, 1 << LayerMask.NameToLayer("Gui3D")))
-				{
-					HoverObject = GetContainingGuiObject(hit.transform.gameObject);
-				}
-				else
-				{
-					HoverObject = null;
 				}
 			}
 		}

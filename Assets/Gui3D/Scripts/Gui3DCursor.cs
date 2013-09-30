@@ -6,6 +6,8 @@ namespace Gui3D
 	public class Gui3DCursor : Gui3DObject
 	{
 		
+		public bool MoveCursorWithMouse = true;
+		
 		// Use this for initialization
 		void Start () {
 		
@@ -13,7 +15,12 @@ namespace Gui3D
 		
 		// Update is called once per frame
 		void Update () {
-			// TODO: move cursor movement here
+			if (MoveCursorWithMouse)
+			{
+				Vector3 projectionPosition = Input.mousePosition;
+				projectionPosition.z = 1000;
+				transform.position = GetGui3D().GetMouseCamera().ScreenToWorldPoint(projectionPosition);
+			}
 		}
 	}
 }
