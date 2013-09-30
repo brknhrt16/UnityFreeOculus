@@ -45,13 +45,19 @@ namespace Gui3D
 		public void Select()
 		{
 			Selected = true;
-			OnSelect();
+			if (OnSelect != null)
+			{
+				OnSelect();
+			}
 		}
 		
 		public void Deselect()
 		{
 			Selected = false;
-			OnDeselect();
+			if (OnDeselect != null)
+			{
+				OnDeselect();
+			}
 		}
 	}
 }

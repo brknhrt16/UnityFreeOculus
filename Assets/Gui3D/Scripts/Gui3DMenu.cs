@@ -112,6 +112,7 @@ namespace Gui3D
 				}
 			}
 			MenuObjects.Sort(Gui3DMenuUtils.LocationCompare);
+			MenuObjects.ForEach(x => print (x));
 		}
 	}
 }

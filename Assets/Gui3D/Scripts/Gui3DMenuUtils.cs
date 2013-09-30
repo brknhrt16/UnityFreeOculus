@@ -4,14 +4,14 @@ using System.Collections;
 namespace Gui3D
 {
 
-	public class Gui3DMenuUtils 
+	public class Gui3DMenuUtils : MonoBehaviour
 	{
 		public static int IndexCompare(GameObject object1, GameObject object2)
 		{
 			if((object1 == null) && (object2 == null))
 			{
 				Debug.LogError("Gui3DMenuUtils: Objects are null");
-				return -1;
+				return 0;
 			}
 			else if(object1 == null)
 			{
@@ -30,7 +30,7 @@ namespace Gui3D
 			if((obj1 == null) && (obj2 == null))
 			{
 				Debug.LogError("Gui3DMenuUtils: Objects are null");
-				return -1;
+				return 0;
 			}
 			else if(obj1 == null)
 			{
@@ -49,7 +49,7 @@ namespace Gui3D
 			}
 			else if(obj1.MenuIndex > obj2.MenuIndex)
 			{
-				return 0;
+				return 1;
 			}
 			else return LocationCompare(object1, object2);
 		}
@@ -59,7 +59,7 @@ namespace Gui3D
 			if((object1 == null) && (object2 == null))
 			{
 				Debug.LogError("Gui3DMenuUtils: Objects are null");
-				return -1;
+				return 0;
 			}
 			else if(object1 == null)
 			{
@@ -78,7 +78,8 @@ namespace Gui3D
 			CompareValue xcompare = Compare(object1position.x, object2position.x);
 			CompareValue ycompare = Compare(object1position.y, object2position.y);
 			CompareValue zcompare = Compare(object1position.z, object2position.z);
-			
+			print ( "Comparing " + object1.name + " and " + object2.name);
+			print(ycompare);
 			if(ycompare == CompareValue.MORE)
 			{
 				return -1;
@@ -106,7 +107,7 @@ namespace Gui3D
 				return 1;
 			}
 			
-			return -1;
+			return 0;
 		}
 		
 		public enum CompareValue
@@ -124,9 +125,9 @@ namespace Gui3D
 			}
 			else if(a > b)
 			{
-				return CompareValue.EQUAL;
+				return CompareValue.MORE;
 			}
-			else return CompareValue.MORE;
+			else return CompareValue.EQUAL;
 		}
 		
 		
