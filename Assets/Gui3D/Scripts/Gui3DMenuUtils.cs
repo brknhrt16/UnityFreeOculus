@@ -78,8 +78,7 @@ namespace Gui3D
 			CompareValue xcompare = Compare(object1position.x, object2position.x);
 			CompareValue ycompare = Compare(object1position.y, object2position.y);
 			CompareValue zcompare = Compare(object1position.z, object2position.z);
-			print ( "Comparing " + object1.name + " and " + object2.name);
-			print(ycompare);
+			
 			if(ycompare == CompareValue.MORE)
 			{
 				return -1;
