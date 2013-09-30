@@ -64,11 +64,11 @@ namespace Gui3D
 		
 		void Update()
 		{
-			if(HideMouse)
+			if(HideMouse && Screen.showCursor)
 			{
 				Screen.showCursor = false;
 			}
-			else
+			else if(!HideMouse && !Screen.showCursor)
 			{
 				Screen.showCursor = true;
 			}
