@@ -9,6 +9,11 @@ namespace Gui3D
 		public bool Selectable = false;
 		public bool Selected = false;
 		
+		public delegate void OnSelectEvent();
+		public event OnSelectEvent OnSelect;
+		
+		public delegate void OnDeselectEvent();
+		public event OnDeselectEvent OnDeselect;
 		
 		/// <summary>
 		/// Gets the Gui3D containing this object.
@@ -40,11 +45,13 @@ namespace Gui3D
 		public void Select()
 		{
 			Selected = true;
+			OnSelect();
 		}
 		
 		public void Deselect()
 		{
 			Selected = false;
+			OnDeselect();
 		}
 	}
 }
