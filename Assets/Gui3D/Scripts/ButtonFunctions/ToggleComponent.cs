@@ -11,6 +11,10 @@ namespace Gui3D
 		public GameObject Obj = null;
 		public string ComponentName = "";
 		
+		public bool ChangeOnce = false;
+		
+		private bool Changed = false;
+		
 		// Use this for initialization
 		void Start () 
 		{
@@ -25,6 +29,10 @@ namespace Gui3D
 		
 		void Toggle()
 		{
+			if(ChangeOnce && Changed)
+			{
+				return;
+			}
 			if((Obj != null) && (ComponentName != ""))
 			{				
 				MonoBehaviour component = Obj.GetComponent(ComponentName) as MonoBehaviour;
@@ -32,6 +40,10 @@ namespace Gui3D
 				if(component != null)
 				{
 					component.enabled = !component.enabled;
+					if(ChangeOnce)
+					{
+						Changed = true;
+					}
 				}
 			}
 		}
