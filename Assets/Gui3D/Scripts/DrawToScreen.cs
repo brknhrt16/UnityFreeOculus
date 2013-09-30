@@ -22,8 +22,8 @@ namespace Gui3D
 			}
 			if (CenterImage)
 			{
-				Offset.x = -Image.width / 2f;	
-				Offset.y = -Image.height / 2f;
+				Offset.x = -Size.x / 2f;	
+				Offset.y = -Size.y / 2f;
 			}
 			
 		}
