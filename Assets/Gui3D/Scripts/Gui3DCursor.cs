@@ -19,7 +19,11 @@ namespace Gui3D
 			{
 				Vector3 projectionPosition = Input.mousePosition;
 				projectionPosition.z = 1000;
-				transform.position = GetGui3D().GetMouseCamera().ScreenToWorldPoint(projectionPosition);
+				Camera guiCamera = GetGui3D().GetMouseCamera();
+				if (guiCamera)
+				{
+					transform.position = guiCamera.ScreenToWorldPoint(projectionPosition);
+				}
 			}
 		}
 	}
