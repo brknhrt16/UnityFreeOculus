@@ -20,7 +20,6 @@ namespace Gui3D
 		// Use this for initialization
 		void Start () 
 		{
-			Screen.lockCursor = true;
 			gameObject.GetComponent<Gui3DButton>().OnPush += new Gui3DButton.OnPushEvent(Toggle);
 		}
 		
