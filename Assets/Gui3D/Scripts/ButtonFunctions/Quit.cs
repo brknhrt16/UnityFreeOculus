@@ -6,8 +6,6 @@ namespace Gui3D
 	
 	public class Quit : MonoBehaviour 
 	{
-	
-		public GameObject Obj = null;
 		
 		// Use this for initialization
 		void Start () 
