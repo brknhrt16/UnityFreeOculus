@@ -4,6 +4,7 @@ using System.Collections;
 public class UfobCamera : MonoBehaviour 
 {
 	private bool HmdMode = true;
+	public bool HeadTrack = true;
 	public bool OverrideToHmdMode = false;
 	public GameObject [] HmdObjects;
 	public GameObject [] NonHmdObjects;
@@ -90,7 +91,25 @@ public class UfobCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		if(HmdMode)
+		{
+			if(HeadTrack)
+			{
+				MonoBehaviour [] cameras = HmdObjects[0].GetComponentsInChildren<OVRCamera>();
+				foreach(MonoBehaviour camera in cameras)
+				{
+					(camera as OVRCamera).HeadTrack = true;
+				}
+			}
+			else
+			{
+				MonoBehaviour [] cameras = HmdObjects[0].GetComponentsInChildren<OVRCamera>();
+				foreach(MonoBehaviour camera in cameras)
+				{
+					(camera as OVRCamera).HeadTrack = false;
+				}
+			}
+		}
 	}
 	
 	
