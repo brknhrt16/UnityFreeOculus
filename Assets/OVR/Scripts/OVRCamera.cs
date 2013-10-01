@@ -111,8 +111,7 @@ public class OVRCamera : OVRComponent
 			CameraTexture = new RenderTexture(  w, h, 24);
 			
 			// Use MSAA settings in QualitySettings for new RenderTexture
-			// UnityFree: Removed nonfree reference
-			//CameraTexture.antiAliasing = QualitySettings.antiAliasing;
+			CameraTexture.antiAliasing = QualitySettings.antiAliasing;
 		}
 	}
 
