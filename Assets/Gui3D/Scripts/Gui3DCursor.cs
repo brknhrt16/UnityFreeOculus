@@ -11,11 +11,16 @@ namespace Gui3D
 		
 		// Use this for initialization
 		void Start () {
-		
+			// TODO: Place on all gui cameras rather than just active ones to allow 
+			//       in game mode switching
+			foreach (Camera camera in GetGui3D().GuiCameras)
+			{
+				camera.GetComponent<Gui3DCamera>().OnPreRendered += new Gui3DCamera.OnPreRenderEvent(OnPreRender);
+			}
 		}
 		
-		// Update is called once per frame
-		void Update () {
+		// OnPreRender is called once before each camera's render
+		void OnPreRender () {
 			if (MoveCursorWithMouse)
 			{
 				Vector3 projectionPosition = Input.mousePosition;

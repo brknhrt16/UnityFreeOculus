@@ -10,7 +10,22 @@ namespace Gui3D
 		public bool HideMouse = true;
 	    public GameObject Cursor;
 		
-		public Camera[] GuiCameras;
+		private Camera[] guiCameras;
+		public Camera[] GuiCameras
+		{
+			get
+			{
+				if (guiCameras == null)
+				{
+					guiCameras = GetComponentsInChildren<Camera>();;
+				}
+				return guiCameras;
+			}
+			private set
+			{
+				guiCameras = value;
+			}
+		}
 		
 		public Gui3DObject HoverObject
 		{
@@ -59,7 +74,7 @@ namespace Gui3D
 		
 		void Start()
 		{
-			GuiCameras = this.GetComponentsInChildren<Camera>();
+			
 		}
 		
 		void Update()
