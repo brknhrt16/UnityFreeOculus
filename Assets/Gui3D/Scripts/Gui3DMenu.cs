@@ -18,7 +18,7 @@ namespace Gui3D
 		
 		private int SelectedIndex = 0;
 		
-		private bool Locked = false;
+		public bool Locked = false;
 		
 		// Use this for initialization
 		void Start () 

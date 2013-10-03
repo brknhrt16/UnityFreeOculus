@@ -46,12 +46,12 @@ namespace Gui3D {
 		}
 		
 		// Use this for initialization
-		void Start () {
+		protected virtual void Start () {
 			
 		}
 		
 		// Update is called once per frame
-		void Update () {
+		protected virtual void Update () {
 			if (ClickPress)
 			{
 				if (IsHovering() && Input.GetMouseButtonUp(0))
