@@ -13,6 +13,7 @@ namespace Gui3D
 		public Material DeselectedMaterial = null;
 		
 		private bool Checked = false;
+		private bool Toggle = true;
 			
 		// Use this for initialization
 		void Start () 
@@ -32,26 +33,30 @@ namespace Gui3D
 				}
 				
 			}
-			gameObject.GetComponent<Gui3DCheckBox>().OnPush += new Gui3DButton.OnPushEvent(ToggleMaterial);
+			gameObject.GetComponent<Gui3DCheckBox>().OnCheck += new Gui3DCheckBox.OnCheckEvent(OnCheck);
+			gameObject.GetComponent<Gui3DCheckBox>().OnUnCheck += new Gui3DCheckBox.OnUnCheckEvent(OnUnCheck);
 		}
 		
-		
-		void ToggleMaterial()
+		void OnCheck()
 		{
-			Checked = !Checked;
 			if((Obj != null) && (SelectedMaterial != null) && (DeselectedMaterial != null))
 			{				
 				MeshRenderer mesh = Obj.GetComponent<MeshRenderer>();
 				if(mesh != null)
 				{
-					if(Checked)
-					{
-						mesh.material = SelectedMaterial;
-					}
-					else
-					{
-						mesh.material = DeselectedMaterial;
-					}
+					mesh.material = SelectedMaterial;
+				}
+			}
+		}
+		
+		void OnUnCheck()
+		{
+			if((Obj != null) && (SelectedMaterial != null) && (DeselectedMaterial != null))
+			{				
+				MeshRenderer mesh = Obj.GetComponent<MeshRenderer>();
+				if(mesh != null)
+				{
+					mesh.material = DeselectedMaterial;
 				}
 			}
 		}

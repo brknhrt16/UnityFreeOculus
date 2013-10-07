@@ -6,15 +6,44 @@ namespace Gui3D
 	public class Gui3DCheckBox : Gui3DButton 
 	{
 		public bool Checked = false;
+		public bool Toggle = true;
+		
+		public delegate void OnCheckEvent();
+		public event OnCheckEvent OnCheck;
+		
+		public delegate void OnUnCheckEvent();
+		public event OnUnCheckEvent OnUnCheck;
 		
 		void Start()
 		{
-			OnPush += new OnPushEvent(OnCheck);
+			OnPush += new OnPushEvent(OnClick);
 		}
 		
-		void OnCheck()
+		void OnClick()
 		{
-			Checked = !Checked;
+			if(Toggle)
+			{
+				if(Checked)
+				{
+					UnCheck();
+				}
+				else 
+				{
+					Check();
+				}
+			}
+		}
+		
+		public void Check()
+		{
+			Checked = true;
+			OnCheck();
+		}
+		
+		public void UnCheck()
+		{
+			Checked = false;
+			OnUnCheck();
 		}
 	}
 }

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Gui3D
 {
-	public class Gui3DMenu : Gui3DObject 
+	public class Gui3DRadioMenu : Gui3DObject 
 	{
 		public bool UseMenuIndex = false;
-		public List<Gui3DObject> MenuObjects;
+		public List<Gui3DCheckBox> MenuObjects;
 		
 		public string UpButton = "MenuUp";
 		public string DownButton = "MenuDown";
@@ -51,7 +51,7 @@ namespace Gui3D
 				return;
 			}
 			
-			MenuObjects[SelectedIndex].Deselect();
+			MenuObjects[SelectedIndex].GetComponent<Gui3DObject>().Deselect();
 				
 			if(Input.GetButtonDown(DownButton))
 			{
@@ -75,7 +75,7 @@ namespace Gui3D
 			{
 				if (GetGui3D().HoverObject != null)
 				{
-					Gui3DObject hoverobj = MenuObjects.Find(obj => obj == GetGui3D().HoverObject);
+					Gui3DCheckBox hoverobj = MenuObjects.Find(obj => obj.gameObject == GetGui3D().HoverObject.gameObject);
 					if(hoverobj != null)
 					{
 						SelectedIndex = MenuObjects.IndexOf(hoverobj);
@@ -83,9 +83,31 @@ namespace Gui3D
 				}
 			}
 			
-			MenuObjects[SelectedIndex].Select();
-			
-			
+			MenuObjects[SelectedIndex].Select();			
+		}
+		
+		void OnClick()
+		{
+			print ("CLICKED");
+			if (GetGui3D().HoverObject != null)
+			{
+				Gui3DCheckBox hoverobj = MenuObjects.Find(obj => obj.gameObject == GetGui3D().HoverObject.gameObject);
+				if(hoverobj != null)
+				{
+					SelectedIndex = MenuObjects.IndexOf(hoverobj);
+				}
+				for(int i = 0; i < MenuObjects.Count; i++)
+				{
+					if(i != SelectedIndex)
+					{
+						MenuObjects[i].UnCheck();
+					}
+					else
+					{
+						MenuObjects[i].Check();
+					}
+				}
+			}
 		}
 		
 		void UpdateIndex(int increment)
@@ -118,15 +140,17 @@ namespace Gui3D
 		
 		void FillMenuAutomatically()
 		{
-			MenuObjects = new List<Gui3DObject>();
+			MenuObjects = new List<Gui3DCheckBox>();
 			foreach(Transform child in transform)
 			{
-				Gui3DObject obj = child.gameObject.GetComponent<Gui3DObject>();
+				Gui3DCheckBox obj = child.gameObject.GetComponent<Gui3DCheckBox>();
 				if(obj != null)
 				{
 					if(obj.Selectable == true)
 					{
 						obj.Deselect();
+						obj.UnCheck();
+						obj.OnPush += new Gui3DButton.OnPushEvent(OnClick);
 						MenuObjects.Add(obj);
 					}
 				}
