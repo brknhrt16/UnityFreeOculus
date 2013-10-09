@@ -21,14 +21,18 @@ namespace Gui3D
 		
 		public bool UseMouse = true;
 		
-		private int SelectedIndex = 0;
+		protected int SelectedIndex = 0;
 		
 		public bool Locked = false;
+		public bool LockParentMenu = true;
+		
+		protected Gui3DMenu parent = null;
 		
 		// Use this for initialization
 		void Start () 
 		{
 			RefillMenu();
+			parent = transform.parent.GetComponent<Gui3DMenu>();
 		}
 		
 		void RefillMenu()
@@ -46,46 +50,62 @@ namespace Gui3D
 		// Update is called once per frame
 		void Update () 
 		{
-			if((MenuObjects.Count <= 0) || Locked)
+			if(Selected && Locked)
+			{
+				Focus();
+			}
+			if((MenuObjects.Count <= 0))
 			{
 				return;
 			}
 			
-			MenuObjects[SelectedIndex].Deselect();
-				
-			if(Input.GetButtonDown(DownButton))
-			{
-				UpdateIndex(GridColumns);
-			}
-			else if(Input.GetButtonDown(UpButton))
-			{
-				UpdateIndex(-GridColumns);
-			}
+			MenuObjects[SelectedIndex].GetComponent<Gui3DObject>().Deselect();
 			
-			if(Input.GetButtonDown(RightButton))
+			if(!Locked)
 			{
-				UpdateIndex(1);
-			}
-			else if(Input.GetButtonDown(LeftButton))
-			{
-				UpdateIndex(-1);
+				if(Input.GetButtonDown(DownButton))
+				{
+					UpdateIndex(GridColumns);
+				}
+				else if(Input.GetButtonDown(UpButton))
+				{
+					UpdateIndex(-GridColumns);
+				}
+				
+				if(Input.GetButtonDown(RightButton))
+				{
+					UpdateIndex(1);
+				}
+				else if(Input.GetButtonDown(LeftButton))
+				{
+					UpdateIndex(-1);
+				}
 			}
 			
 			if(UseMouse)
 			{
 				if (GetGui3D().HoverObject != null)
 				{
-					Gui3DObject hoverobj = MenuObjects.Find(obj => obj == GetGui3D().HoverObject);
+					Gui3DObject hoverobj = MenuObjects.Find(obj => obj.gameObject == GetGui3D().HoverObject.gameObject);
 					if(hoverobj != null)
-					{
+					{						
+						if(Locked && LockParentMenu)
+						{
+							Focus();
+						}
 						SelectedIndex = MenuObjects.IndexOf(hoverobj);
+					}
+					else
+					{
+						UnFocus();
 					}
 				}
 			}
 			
-			MenuObjects[SelectedIndex].Select();
-			
-			
+			if(!Locked)
+			{
+				MenuObjects[SelectedIndex].Select();
+			}
 		}
 		
 		void UpdateIndex(int increment)
@@ -98,13 +118,22 @@ namespace Gui3D
 				{
 					SelectedIndex += MenuObjects.Count;
 				}
+				else if(LockParentMenu)
+				{
+					UnFocus();
+				}
 				else SelectedIndex -= increment;
+					
 			}
 			else if(SelectedIndex > MenuObjects.Count - 1)
 			{
 				if(Wrap)
 				{
 					SelectedIndex -= MenuObjects.Count;
+				}
+				else if(LockParentMenu)
+				{
+					UnFocus();
 				}
 				else SelectedIndex -= increment;
 			}
@@ -116,7 +145,7 @@ namespace Gui3D
 			MenuObjects.Sort(Gui3DMenuUtils.IndexCompare);
 		}
 		
-		void FillMenuAutomatically()
+		virtual protected void FillMenuAutomatically()
 		{
 			MenuObjects = new List<Gui3DObject>();
 			foreach(Transform child in transform)
@@ -132,6 +161,44 @@ namespace Gui3D
 				}
 			}
 			MenuObjects.Sort(Gui3DMenuUtils.LocationCompare);
+		}
+		
+		
+		void DeselectAll()
+		{
+			foreach(Gui3DObject obj in MenuObjects)
+			{
+				obj.Deselect();
+			}
+		}
+		
+		
+		void Focus()
+		{
+			if(LockParentMenu)
+			{
+				if(parent == null)
+				{
+					return;
+				}
+				parent.Locked = true;
+				Locked = false;
+				SelectedIndex = 0;
+			}
+		}
+		void UnFocus()
+		{
+			if(LockParentMenu)
+			{
+				if(parent == null)
+				{
+					return;
+				}
+				parent.Locked = false;
+				Locked = true;
+				SelectedIndex = 0;
+				DeselectAll();
+			}
 		}
 	}
 }
