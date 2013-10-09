@@ -37,13 +37,19 @@ namespace Gui3D
 		public void Check()
 		{
 			Checked = true;
-			OnCheck();
+			if(OnCheck != null)
+			{
+				OnCheck();
+			}
 		}
 		
 		public void UnCheck()
 		{
 			Checked = false;
-			OnUnCheck();
+			if(OnUnCheck != null)
+			{
+				OnUnCheck();
+			}
 		}
 	}
 }
