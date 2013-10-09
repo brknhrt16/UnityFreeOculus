@@ -91,7 +91,7 @@ public class UfobCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(HmdMode)
+		/*if(HmdMode)
 		{
 			if(HeadTrack)
 			{
@@ -109,7 +109,7 @@ public class UfobCamera : MonoBehaviour
 					(camera as OVRCamera).HeadTrack = false;
 				}
 			}
-		}
+		}*/
 	}
 	
 	
