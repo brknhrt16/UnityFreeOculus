@@ -6,27 +6,8 @@ namespace Gui3D
 
 	public class Gui3DMenuUtils : MonoBehaviour
 	{
-		public static int IndexCompare(GameObject object1, GameObject object2)
+		public static int IndexCompare(Gui3DObject obj1, Gui3DObject obj2)
 		{
-			if((object1 == null) && (object2 == null))
-			{
-				Debug.LogError("Gui3DMenuUtils: Objects are null");
-				return 0;
-			}
-			else if(object1 == null)
-			{
-				Debug.LogError("Gui3DMenuUtils: Object1 is null");
-				return 1;
-			}
-			else if(object2 == null)
-			{
-				Debug.LogError("Gui3DMenuUtils: Object2 is null");
-				return -1;	
-			}
-			
-			Gui3DObject obj1 = object1.GetComponent<Gui3DObject>();
-			Gui3DObject obj2 = object2.GetComponent<Gui3DObject>();
-			
 			if((obj1 == null) && (obj2 == null))
 			{
 				Debug.LogError("Gui3DMenuUtils: Objects are null");
@@ -51,29 +32,29 @@ namespace Gui3D
 			{
 				return 1;
 			}
-			else return LocationCompare(object1, object2);
+			else return LocationCompare(obj1, obj2);
 		}
 		
-		public static int LocationCompare(GameObject object1, GameObject object2)
+		public static int LocationCompare(Gui3DObject obj1, Gui3DObject obj2)
 		{
-			if((object1 == null) && (object2 == null))
+			if((obj1 == null) && (obj2 == null))
 			{
 				Debug.LogError("Gui3DMenuUtils: Objects are null");
 				return 0;
 			}
-			else if(object1 == null)
+			else if(obj1 == null)
 			{
 				Debug.LogError("Gui3DMenuUtils: Object1 is null");
 				return 1;
 			}
-			else if(object2 == null)
+			else if(obj2 == null)
 			{
 				Debug.LogError("Gui3DMenuUtils: Object2 is null");
 				return -1;	
 			}
 			
-			Vector3 object1position = object1.transform.position;
-			Vector3 object2position = object2.transform.position;
+			Vector3 object1position = obj1.gameObject.transform.position;
+			Vector3 object2position = obj2.gameObject.transform.position;
 			
 			CompareValue xcompare = Compare(object1position.x, object2position.x);
 			CompareValue ycompare = Compare(object1position.y, object2position.y);
