@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="vrpnServerSimple">
+</Property><Property Name="Solution File" Value="D:\dl\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple.sln">
+</Property><Property Name="Date" Value="Wednesday, October 09, 2013">
+</Property><Property Name="Time" Value="14:20 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="vrpnServerSimple.sln" Description="File successfully backed up as D:\dl\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple.sln.old">
+</Event><Event ErrorLevel="0" Project="vrpnServerSimple" Source="vrpnServerSimple\vrpnServerSimple.vcproj" Description="Converting project file 'D:\dl\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple.vcproj'.">
+</Event><Event ErrorLevel="1" Project="vrpnServerSimple" Source="vrpnServerSimple\vrpnServerSimple.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="vrpnServerSimple" Source="vrpnServerSimple\vrpnServerSimple.vcproj" Description="Done converting to new project file 'D:\dl\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="vrpnServerSimple" Source="vrpnServerSimple\vrpnServerSimple.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="vrpnServerSimple.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="vrpnServerSimple.sln" Description="Converted">
+</Event></UpgradeLog>

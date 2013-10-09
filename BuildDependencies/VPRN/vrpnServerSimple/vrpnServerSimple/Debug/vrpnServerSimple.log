@@ -1,0 +1,46 @@
+﻿Build started 10/9/2013 3:39:10 PM.
+     1>Project "D:\dl\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\vrpnServerSimple.unsuccessfulbuild".
+       ClCompile:
+         k:\Programs\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\vrpn /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt OculusManager.cpp vrpnServerSimple.cpp
+         vrpnServerSimple.cpp
+     1>d:\dl\vrpnserversimple\vrpnserversimple\vrpnserversimple\vrpnserversimple.cpp(117): warning C4305: '+=' : truncation from 'double' to 'float'
+     1>d:\dl\vrpnserversimple\vrpnserversimple\vrpnserversimple\vrpnserversimple.cpp(119): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\dl\vrpnserversimple\vrpnserversimple\vrpnserversimple\vrpnserversimple.cpp(170): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+         Compiling...
+         OculusManager.cpp
+         Generating Code...
+       Link:
+         k:\Programs\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\dl\vrpnServerSimple\vrpnServerSimple\Debug\vrpnServerSimple.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:..\vrpn\VC2008\Debug /LIBPATH:D:\dl\ovr_sdk_win_0.2.4.b\OculusSDK\LibOVR\Lib\Win32 vrpn.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\vrpnServerSimple.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\dl\vrpnServerSimple\vrpnServerSimple\Debug\vrpnServerSimple.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\dl\vrpnServerSimple\vrpnServerSimple\Debug\vrpnServerSimple.lib" /MACHINE:X86 Debug\OculusManager.obj
+         Debug\vrpnServerSimple.obj
+     1>OculusManager.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: bool __thiscall OVR::SensorFusion::AttachToSensor(class OVR::SensorDevice *)" (?AttachToSensor@SensorFusion@OVR@@QAE_NPAVSensorDevice@2@@Z) referenced in function "public: __thiscall OculusManager::OculusManager(void)" (??0OculusManager@@QAE@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: void __thiscall OVR::DeviceHandle::Clear(void)" (?Clear@DeviceHandle@OVR@@QAEXXZ) referenced in function "public: __thiscall OculusManager::OculusManager(void)" (??0OculusManager@@QAE@XZ)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: static float const OVR::Math<float>::Pi" (?Pi@?$Math@M@OVR@@2MB)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: bool __thiscall OVR::DeviceHandle::GetDeviceInfo(class OVR::DeviceInfo *)const " (?GetDeviceInfo@DeviceHandle@OVR@@QBE_NPAVDeviceInfo@2@@Z) referenced in function "public: __thiscall OculusManager::OculusManager(void)" (??0OculusManager@@QAE@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: static class OVR::DeviceManager * __cdecl OVR::DeviceManager::Create(void)" (?Create@DeviceManager@OVR@@SAPAV12@XZ) referenced in function "public: __thiscall OculusManager::OculusManager(void)" (??0OculusManager@@QAE@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: static void __cdecl OVR::System::Init(class OVR::Log *,class OVR::Allocator *)" (?Init@System@OVR@@SAXPAVLog@2@PAVAllocator@2@@Z) referenced in function "public: __thiscall OculusManager::OculusManager(void)" (??0OculusManager@@QAE@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: static class OVR::Log * __cdecl OVR::Log::GetDefaultLog(void)" (?GetDefaultLog@Log@OVR@@SAPAV12@XZ) referenced in function "public: static class OVR::Log * __cdecl OVR::Log::ConfigureDefaultLog(unsigned int)" (?ConfigureDefaultLog@Log@OVR@@SAPAV12@I@Z)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: enum OVR::DeviceType __thiscall OVR::DeviceHandle::GetType(void)const " (?GetType@DeviceHandle@OVR@@QBE?AW4DeviceType@2@XZ) referenced in function "public: __thiscall OVR::DeviceHandle::operator bool(void)const " (??BDeviceHandle@OVR@@QBE_NXZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: __thiscall OVR::DeviceHandle::~DeviceHandle(void)" (??1DeviceHandle@OVR@@QAE@XZ) referenced in function "public: __thiscall OVR::DeviceEnumerator<class OVR::SensorDevice>::~DeviceEnumerator<class OVR::SensorDevice>(void)" (??1?$DeviceEnumerator@VSensorDevice@OVR@@@OVR@@QAE@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: static void __cdecl OVR::System::Destroy(void)" (?Destroy@System@OVR@@SAXXZ) referenced in function "public: __thiscall OculusManager::~OculusManager(void)" (??1OculusManager@@QAE@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "protected: bool __thiscall OVR::DeviceHandle::enumerateNext(class OVR::DeviceEnumerationArgs const &)" (?enumerateNext@DeviceHandle@OVR@@IAE_NABVDeviceEnumerationArgs@2@@Z) referenced in function "public: bool __thiscall OVR::DeviceEnumerator<class OVR::SensorDevice>::Next(void)" (?Next@?$DeviceEnumerator@VSensorDevice@OVR@@@OVR@@QAE_NXZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: class OVR::DeviceBase * __thiscall OVR::DeviceHandle::CreateDevice(void)" (?CreateDevice@DeviceHandle@OVR@@QAEPAVDeviceBase@2@XZ) referenced in function "public: class OVR::SensorDevice * __thiscall OVR::DeviceEnumerator<class OVR::SensorDevice>::CreateDevice(void)" (?CreateDevice@?$DeviceEnumerator@VSensorDevice@OVR@@@OVR@@QAEPAVSensorDevice@2@XZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: class OVR::Lock * __thiscall OVR::MessageHandler::GetHandlerLock(void)const " (?GetHandlerLock@MessageHandler@OVR@@QBEPAVLock@2@XZ) referenced in function "private: class OVR::Quat<float> __thiscall OVR::SensorFusion::lockedGet<class OVR::Quat<float> >(class OVR::Quat<float> const *)const " (??$lockedGet@V?$Quat@M@OVR@@@SensorFusion@OVR@@ABE?AV?$Quat@M@1@PBV21@@Z)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: __thiscall OVR::DeviceHandle::DeviceHandle(class OVR::DeviceHandle const &)" (??0DeviceHandle@OVR@@QAE@ABV01@@Z) referenced in function "public: __thiscall OVR::DeviceEnumerator<class OVR::SensorDevice>::DeviceEnumerator<class OVR::SensorDevice>(class OVR::DeviceEnumerator<class OVR::SensorDevice> const &)" (??0?$DeviceEnumerator@VSensorDevice@OVR@@@OVR@@QAE@ABV01@@Z)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: virtual void * __thiscall OVR::DefaultAllocator::Alloc(unsigned int)" (?Alloc@DefaultAllocator@OVR@@UAEPAXI@Z)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: virtual void * __thiscall OVR::DefaultAllocator::AllocDebug(unsigned int,char const *,unsigned int)" (?AllocDebug@DefaultAllocator@OVR@@UAEPAXIPBDI@Z)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: virtual void * __thiscall OVR::DefaultAllocator::Realloc(void *,unsigned int)" (?Realloc@DefaultAllocator@OVR@@UAEPAXPAXI@Z)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall OVR::DefaultAllocator::Free(void *)" (?Free@DefaultAllocator@OVR@@UAEXPAX@Z)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: virtual void * __thiscall OVR::Allocator::AllocAligned(unsigned int,unsigned int)" (?AllocAligned@Allocator@OVR@@UAEPAXII@Z)
+     1>OculusManager.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall OVR::Allocator::FreeAligned(void *)" (?FreeAligned@Allocator@OVR@@UAEXPAX@Z)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: __thiscall OVR::SensorFusion::SensorFusion(class OVR::SensorDevice *)" (??0SensorFusion@OVR@@QAE@PAVSensorDevice@1@@Z) referenced in function "void __cdecl `dynamic initializer for 'fusion''(void)" (??__Efusion@@YAXXZ)
+     1>OculusManager.obj : error LNK2019: unresolved external symbol "public: __thiscall OVR::SensorFusion::~SensorFusion(void)" (??1SensorFusion@OVR@@QAE@XZ) referenced in function "void __cdecl `dynamic atexit destructor for 'fusion''(void)" (??__Ffusion@@YAXXZ)
+     1>D:\dl\vrpnServerSimple\vrpnServerSimple\Debug\vrpnServerSimple.exe : fatal error LNK1120: 22 unresolved externals
+     1>Done Building Project "D:\dl\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple\vrpnServerSimple.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.20
