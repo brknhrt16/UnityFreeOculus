@@ -33,17 +33,18 @@ namespace Gui3D
 		{
 			if (BoundingObject)
 			{
-				float size = 0;
+				/*float size = 0;
 				int numChars = 0;
 				float boundingSize = BoundingObject.GetComponent<MeshFilter>().mesh.bounds.size.x;
 				print(boundingSize);
-				TextMesh textMesh = gameObject.GetComponentInChildren<TextMesh>();
-				CharacterInfo charInfo = textMesh.font.characterInfo[Value.Length - 1], out charInfo, textMesh.font.characterInfo);
-				print(charInfo.width * GetGlobalXScale(textMesh.transform));
+				TextMesh textMesh = gameObject.GetComponentInChildren<TextMesh>();*/
+				//CharacterInfo charInfo = textMesh.font.characterInfo[Value.Length - 1], out charInfo, textMesh.font.characterInfo);
+				//print(charInfo.width * GetGlobalXScale(textMesh.transform));
 				/*while (textMesh.font.GetCharacterInfo(Value[Value.Length - numChars], charInfo, textMesh.fontSize) && size + charInfo.width * gameObject.transform.localScale.x)
 				{
 					//BoundingObject.GetComponent<MeshFilter>().mesh.bounds;
 				}*/
+				gameObject.GetComponentInChildren<TextMesh>().text = Value;
 			}
 		}
 		
