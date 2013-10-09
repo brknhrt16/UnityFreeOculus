@@ -8,7 +8,6 @@ namespace Gui3D
 	{
 		void OnClick()
 		{
-			print ("CLICKED");
 			
 			if (GetGui3D().HoverObject != null)
 			{
