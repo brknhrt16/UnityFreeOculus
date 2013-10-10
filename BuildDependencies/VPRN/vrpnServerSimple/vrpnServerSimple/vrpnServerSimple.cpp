@@ -24,19 +24,20 @@ class OculusRiftTracker : public vrpn_Tracker
 {
 public:
 	OculusRiftTracker( vrpn_Connection *c = 0 );
-	virtual ~OculusRiftTracker() {};
+	virtual ~OculusRiftTracker() {cout << "Deconstructing RiftTracker" << endl;};
 
 	virtual void mainloop();
 
 protected:
-	OculusManager _oculusManager;
+	OculusManager * _oculusManager;
 	struct timeval _timestamp;
 };
 
 OculusRiftTracker::OculusRiftTracker( vrpn_Connection *c /*= 0 */ ) :
 	vrpn_Tracker( "Tracker0", c )
 {
-	_oculusManager = OculusManager();
+	cout << "Constructing RiftTracker" << endl;
+	_oculusManager = new OculusManager();
 }
 
 void
@@ -57,12 +58,14 @@ OculusRiftTracker::mainloop()
 
 	// the d_quat array contains the orientation value of the tracker, stored as a quaternion
 	// XXX Set your values here
-	OculusQuaternion ocuQuat = _oculusManager.GetOrientation();
+	OculusQuaternion ocuQuat = _oculusManager->GetOrientation();
 
 	d_quat[0] = ocuQuat.x;
 	d_quat[1] = ocuQuat.y;
 	d_quat[2] = ocuQuat.z;
 	d_quat[3] = ocuQuat.w;
+
+	//cout << d_quat[0] << d_quat[1] << d_quat[2] << d_quat[3] << endl;
 
 	char msgbuf[1000];
 

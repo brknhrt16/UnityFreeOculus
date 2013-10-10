@@ -1,4 +1,7 @@
 #include "OculusManager.h"
+#include <iostream>
+
+using namespace std;
 
 static OVR::SensorDevice* pSensor;
 static OVR::SensorFusion fusion;
@@ -6,10 +9,12 @@ static OVR::DeviceManager* pManager;
 
 OculusManager::OculusManager()
 {
+	cout << "Constructing OculusManager" << endl;
 	OVR::System::Init(OVR::Log::ConfigureDefaultLog(OVR::LogMask_All));
 	pManager = OVR::DeviceManager::Create();
 	if(pManager)
 	{
+		cout << "Created a pManager" << endl;
 		OVR::DeviceEnumerator<OVR::SensorDevice> dEnum = pManager->EnumerateDevices<OVR::SensorDevice>();
 		while(dEnum)
 		{
@@ -29,6 +34,7 @@ OculusManager::OculusManager()
 		}
 		if (pSensor)
 		{
+			cout << "Created pSensor" << endl;
 			bool bWaitForSuccessfulRange = true;
 			float maxAcceleration = 4 * 9.81f;
 			float maxRotationRate = 8 * OVR::Math<float>::Pi;
@@ -59,6 +65,7 @@ OculusQuaternion OculusManager::GetOrientation()
 
 OculusManager::~OculusManager()
 {
+	cout << "Destructing Oculus Manager" << endl;
 	if(pSensor)
 	{
 		pSensor->Release();
