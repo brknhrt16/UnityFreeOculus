@@ -15,11 +15,7 @@ namespace Gui3D
 			//       in game mode switching
 			foreach (Camera camera in GetGui3D().GuiCameras)
 			{
-				if(camera.GetComponent<Gui3DCamera>() != null)
-				{
-					
-					camera.GetComponent<Gui3DCamera>().OnPreRendered += new Gui3DCamera.OnPreRenderEvent(OnPreRender);
-				}				
+				camera.GetComponent<Gui3DCamera>().OnPreRendered += new Gui3DCamera.OnPreRenderEvent(OnPreRender);
 			}
 		}
 		
