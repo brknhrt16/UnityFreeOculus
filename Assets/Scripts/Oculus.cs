@@ -39,13 +39,17 @@ public class Oculus : MonoBehaviour {
 	
 	void OnDestroy()
 	{
-		UIVAClient.Disconnect();
+		if(UIVAClient != null)
+		{
+			UIVAClient.Disconnect();
+		}
 	}
 
     /// <summary>
     /// Test the functionality of UniWii by a console application
     /// </summary>
-    void OnPreRender()
+    /// TODO: Update to be on prerender
+    void Update()
     {
 		if (RiftConnected)
 		{
@@ -53,7 +57,10 @@ public class Oculus : MonoBehaviour {
 	        UIVAClient.GetOculusRiftData(ref quat);
 	        RiftQuaternion = ConvertArrayToQuaternion(quat);
 		}
-		//Quaternion interQuat = Quaternion.Inverse(InitialRotation) * RiftQuaternion;
-		gameObject.transform.rotation = InitialRotation * Quaternion.Inverse(RiftQuaternion);// * Quaternion.AngleAxis(90, Vector3.up))) * Quaternion.AngleAxis(-90, Vector3.up);//Quaternion.Euler(interQuat.eulerAngles.x, interQuat.eulerAngles.y, interQuat.eulerAngles.z);
+		Quaternion interQuat = InitialRotation * Quaternion.Inverse(RiftQuaternion);
+		
+		Vector3 euler = interQuat.eulerAngles;
+		
+		gameObject.transform.rotation = Quaternion.Euler(euler.x, euler.y,-euler.z);// * Quaternion.AngleAxis(90, Vector3.up))) * Quaternion.AngleAxis(-90, Vector3.up);//Quaternion.Euler(interQuat.eulerAngles.x, interQuat.eulerAngles.y, interQuat.eulerAngles.z);
     }
 }
