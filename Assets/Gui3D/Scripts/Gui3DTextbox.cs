@@ -6,7 +6,6 @@ namespace Gui3D
 	public class Gui3DTextbox : Gui3DButton {
 	
 		public string Value = "Hello World";
-		public bool Focused = false;
 		public GameObject BoundingObject = null;
 		
 		void FocusInput()
