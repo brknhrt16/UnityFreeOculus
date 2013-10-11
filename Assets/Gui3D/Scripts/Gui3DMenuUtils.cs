@@ -111,5 +111,19 @@ namespace Gui3D
 		}
 		
 		
+		public static Gui3DMenu GetParentMenu(Transform trans)
+		{
+			Transform parent = trans.parent;
+			if (parent != null)
+			{
+				Gui3DMenu menu = parent.gameObject.GetComponent<Gui3DMenu>();
+				if (menu != null)
+				{
+					return menu;
+				}
+				GetParentMenu(parent);
+			}
+			return null;
+		}
 	}
 }

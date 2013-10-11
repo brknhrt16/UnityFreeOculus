@@ -34,6 +34,17 @@ public class UfobCamera : MonoBehaviour
 			Enable(NonHmdObjects);
 			Disable(HmdObjects);
 		}
+		if(gameObject.GetComponent<TrackOculus>() != null)
+		{
+			if(HeadTrack)
+			{
+				gameObject.GetComponent<TrackOculus>().enabled = true;
+			}
+			else
+			{
+				gameObject.GetComponent<TrackOculus>().enabled = false;
+			}
+		}
 	}
 	
 	void GetHmdMode()
@@ -91,25 +102,17 @@ public class UfobCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		/*if(HmdMode)
+		if(gameObject.GetComponent<TrackOculus>() != null)
 		{
 			if(HeadTrack)
 			{
-				MonoBehaviour [] cameras = HmdObjects[0].GetComponentsInChildren<OVRCamera>();
-				foreach(MonoBehaviour camera in cameras)
-				{
-					(camera as OVRCamera).HeadTrack = true;
-				}
+				gameObject.GetComponent<TrackOculus>().enabled = true;
 			}
 			else
 			{
-				MonoBehaviour [] cameras = HmdObjects[0].GetComponentsInChildren<OVRCamera>();
-				foreach(MonoBehaviour camera in cameras)
-				{
-					(camera as OVRCamera).HeadTrack = false;
-				}
+				gameObject.GetComponent<TrackOculus>().enabled = false;
 			}
-		}*/
+		}
 	}
 	
 	

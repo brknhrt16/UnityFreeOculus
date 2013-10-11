@@ -17,7 +17,7 @@ namespace Gui3D
 		public string LeftButton = "MenuLeft";
 		public string RightButton = "MenuRight";
 		
-		public bool Wrap = true;
+		public bool Wrap = false;
 		
 		public bool UseMouse = true;
 		
@@ -25,6 +25,8 @@ namespace Gui3D
 		
 		public bool Locked = false;
 		public bool LockParentMenu = true;
+		
+		protected bool LockedByParent = false;
 		
 		protected Gui3DMenu parent = null;
 		
@@ -50,6 +52,30 @@ namespace Gui3D
 		// Update is called once per frame
 		void Update () 
 		{
+			parent = Gui3DMenuUtils.GetParentMenu(transform);
+			if(LockedByParent)
+			{
+				if(parent != null)
+				{
+					if(!parent.Locked)
+					{
+						Locked = false;
+						LockedByParent = false;
+					}
+				}
+			}
+			if(Locked)
+			{
+				return;
+			}
+			if(parent != null)
+			{
+				if(parent.Locked)
+				{
+					Locked = true;
+					LockedByParent = true;
+				}
+			}
 			if(Selected && !Focused)
 			{
 				Focus();
@@ -61,7 +87,7 @@ namespace Gui3D
 			
 			MenuObjects[SelectedIndex].GetComponent<Gui3DObject>().Deselect();
 			
-			if(Focused && !Locked)
+			if(Focused)
 			{
 				if(Input.GetButtonDown(DownButton))
 				{
@@ -88,8 +114,9 @@ namespace Gui3D
 				{
 					Gui3DObject hoverobj = MenuObjects.Find(obj => obj.gameObject == GetGui3D().HoverObject.gameObject);
 					if(hoverobj != null)
-					{						
-						if(!Focused && LockParentMenu)
+					{
+						
+						if(!Focused)
 						{
 							Focus();
 						}
@@ -180,13 +207,13 @@ namespace Gui3D
 			{
 				if(parent == null)
 				{
-					print("Null parent menu");
 					return;
 				}
 				parent.Focused = false;
-				Focused = true;
-				SelectedIndex = 0;
 			}
+			
+			Focused = true;
+			SelectedIndex = 0;
 		}
 		void UnFocus()
 		{
@@ -195,14 +222,14 @@ namespace Gui3D
 			{
 				if(parent == null)
 				{
-					print("Null parent menu");
 					return;
 				}
 				parent.Focused = true;
-				Focused = false;
-				SelectedIndex = 0;
-				DeselectAll();
 			}
+			
+			Focused = false;
+			SelectedIndex = 0;
+			DeselectAll();
 		}
 	}
 }

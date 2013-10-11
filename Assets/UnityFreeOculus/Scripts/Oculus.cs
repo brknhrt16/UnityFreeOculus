@@ -16,8 +16,7 @@ public class Oculus : ScriptableObject{
 	private static Quaternion ConvertArrayToQuaternion(double[] quat)
 	{
 		Quaternion interQuat = new Quaternion((float)quat[0], (float)quat[1], (float)quat[2], (float)quat[3]);
-		return interQuat ;// * Quaternion.FromToRotation(Vector3.forward, Vector3.up)) * Quaternion.AngleAxis(90, Vector3.left);/* * Quaternion.AngleAxis(180, Vector3.left);*///Quaternion.Euler(interQuat.eulerAngles.x, interQuat.eulerAngles.y, -interQuat.eulerAngles.z);
-		
+		return interQuat ;
 	}
 	
 	public static void Connect()
@@ -46,25 +45,6 @@ public class Oculus : ScriptableObject{
 			Connected = false;
 		}
 	}
-
-    /// <summary>
-    /// Test the functionality of UniWii by a console application
-    /// </summary>
-    /// TODO: Update to be on prerender
-    /*void Update()
-    {
-		if (RiftConnected)
-		{
-	        double[] quat = new double[4];
-	        UIVAClient.GetOculusRiftData(ref quat);
-	        RiftQuaternion = ConvertArrayToQuaternion(quat);
-		}
-		Quaternion interQuat = InitialRotation * Quaternion.Inverse(RiftQuaternion);
-		
-		Vector3 euler = interQuat.eulerAngles;
-		
-		gameObject.transform.rotation = Quaternion.Euler(euler.x, euler.y, -euler.z);// * Quaternion.AngleAxis(90, Vector3.up))) * Quaternion.AngleAxis(-90, Vector3.up);//Quaternion.Euler(interQuat.eulerAngles.x, interQuat.eulerAngles.y, interQuat.eulerAngles.z);
-    }*/
 	
 	public static Quaternion GetQuaternion() {
 		if (Connected)
@@ -73,10 +53,9 @@ public class Oculus : ScriptableObject{
 	        UIVAClient.GetOculusRiftData(ref quat);
 	        RiftQuaternion = ConvertArrayToQuaternion(quat);
 		}
-		Quaternion interQuat = RiftQuaternion;
 		
-		Vector3 euler = interQuat.eulerAngles;
+		Vector3 euler = RiftQuaternion.eulerAngles;
 		
-		return  /*Quaternion.AngleAxis(-90, Vector3.forward) * Quaternion.Inverse(interQuat) * InitialRotation;*/ /*Quaternion.AngleAxis(180, Vector3.left)*/Quaternion.Euler(-euler.x, -euler.y, euler.z)* InitialRotation;
+		return Quaternion.Euler(-euler.x, -euler.y, euler.z)* InitialRotation;
 	}
 }
