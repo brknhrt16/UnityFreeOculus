@@ -50,7 +50,7 @@ namespace Gui3D
 		// Update is called once per frame
 		void Update () 
 		{
-			if(Selected && Locked)
+			if(Selected && !Focused)
 			{
 				Focus();
 			}
@@ -61,7 +61,7 @@ namespace Gui3D
 			
 			MenuObjects[SelectedIndex].GetComponent<Gui3DObject>().Deselect();
 			
-			if(!Locked)
+			if(Focused && !Locked)
 			{
 				if(Input.GetButtonDown(DownButton))
 				{
@@ -89,7 +89,7 @@ namespace Gui3D
 					Gui3DObject hoverobj = MenuObjects.Find(obj => obj.gameObject == GetGui3D().HoverObject.gameObject);
 					if(hoverobj != null)
 					{						
-						if(Locked && LockParentMenu)
+						if(!Focused && LockParentMenu)
 						{
 							Focus();
 						}
@@ -102,7 +102,7 @@ namespace Gui3D
 				}
 			}
 			
-			if(!Locked)
+			if(Focused)
 			{
 				MenuObjects[SelectedIndex].Select();
 			}
@@ -175,27 +175,31 @@ namespace Gui3D
 		
 		void Focus()
 		{
+			parent = transform.parent.GetComponent<Gui3DMenu>();
 			if(LockParentMenu)
 			{
 				if(parent == null)
 				{
+					print("Null parent menu");
 					return;
 				}
-				parent.Locked = true;
-				Locked = false;
+				parent.Focused = false;
+				Focused = true;
 				SelectedIndex = 0;
 			}
 		}
 		void UnFocus()
 		{
+			parent = transform.parent.GetComponent<Gui3DMenu>();
 			if(LockParentMenu)
 			{
 				if(parent == null)
 				{
+					print("Null parent menu");
 					return;
 				}
-				parent.Locked = false;
-				Locked = true;
+				parent.Focused = true;
+				Focused = false;
 				SelectedIndex = 0;
 				DeselectAll();
 			}

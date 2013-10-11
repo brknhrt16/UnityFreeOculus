@@ -8,6 +8,7 @@ namespace Gui3D
 		public int MenuIndex = 0;
 		public bool Selectable = false;
 		public bool Selected = false;
+		public bool Focused = false;
 		
 		public delegate void OnSelectEvent();
 		public event OnSelectEvent OnSelect;
