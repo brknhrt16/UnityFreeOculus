@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UfobCamera : MonoBehaviour 
+public class UfoCamera : MonoBehaviour 
 {
 	private bool HmdMode = true;
 	public bool HeadTrack = true;
