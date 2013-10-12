@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StartOculus : MonoBehaviour {
+public class OculusManager : MonoBehaviour {
+	
+	protected static GameObject OculusManagerInstance;
 	
 	private IEnumerator DelayResetForward()
 	{
@@ -10,7 +12,16 @@ public class StartOculus : MonoBehaviour {
 	}
 	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+		DontDestroyOnLoad(gameObject);
+		if (OculusManagerInstance != null)
+		{
+			Destroy(gameObject);
+		}
+		else
+		{
+			OculusManagerInstance = gameObject;
+		}
 		if (!Oculus.Connected)
 		{
 			Oculus.Connect();

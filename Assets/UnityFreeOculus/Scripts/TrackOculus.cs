@@ -17,6 +17,6 @@ public class TrackOculus : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Track () {
-		transform.rotation = Oculus.GetQuaternion();
+		transform.localRotation = Oculus.GetQuaternion();
 	}
 }
