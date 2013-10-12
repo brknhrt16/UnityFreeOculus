@@ -5,13 +5,18 @@ using System.Net.Sockets;
 using System.Net;
 using UIVA;
 
-public class Oculus : ScriptableObject{
+public class Oculus : MonoBehaviour {
 
 	private static UIVA_Client UIVAClient;
 	private static Quaternion RiftQuaternion = Quaternion.identity;
 	private static Quaternion InitialRotation = Quaternion.identity;
 
 	public static bool Connected = false;
+	
+	public static void ResetForward()
+	{
+		InitialRotation = GetQuaternion();
+	}
 	
 	private static Quaternion ConvertArrayToQuaternion(double[] quat)
 	{
@@ -24,10 +29,6 @@ public class Oculus : ScriptableObject{
 		try
         {
             UIVAClient = new UIVA_Client("localhost");
-			double[] quat = new double[4];
-			UIVAClient.GetOculusRiftData(ref quat);
-			InitialRotation = GetQuaternion();
-			RiftQuaternion = InitialRotation;
 			Connected = true;
         }
         catch (Exception se)
@@ -56,6 +57,6 @@ public class Oculus : ScriptableObject{
 		
 		Vector3 euler = RiftQuaternion.eulerAngles;
 		
-		return Quaternion.Euler(-euler.x, -euler.y, euler.z)* InitialRotation;
+		return Quaternion.Euler(-euler.x, -euler.y, euler.z) * Quaternion.Inverse(InitialRotation);
 	}
 }

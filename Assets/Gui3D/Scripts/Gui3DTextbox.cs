@@ -32,22 +32,33 @@ namespace Gui3D
 		{
 			if (BoundingObject)
 			{
-				/*float size = 0;
+				float size = 0;
 				int numChars = 0;
-				float boundingSize = BoundingObject.GetComponent<MeshFilter>().mesh.bounds.size.x;
-				print(boundingSize);
-				TextMesh textMesh = gameObject.GetComponentInChildren<TextMesh>();*/
-				//CharacterInfo charInfo = textMesh.font.characterInfo[Value.Length - 1], out charInfo, textMesh.font.characterInfo);
-				//print(charInfo.width * GetGlobalXScale(textMesh.transform));
-				/*while (textMesh.font.GetCharacterInfo(Value[Value.Length - numChars], charInfo, textMesh.fontSize) && size + charInfo.width * gameObject.transform.localScale.x)
+				BoundingObject.GetComponent<MeshFilter>().sharedMesh.RecalculateBounds();
+				float boundingSize = BoundingObject.GetComponent<MeshFilter>().sharedMesh.bounds.size.x * BoundingObject.transform.localScale.x;
+				TextMesh textMesh = gameObject.GetComponentInChildren<TextMesh>();
+				string text = "";
+				//print(charInfo.width * textMesh.transform.localScale.x);
+				//print (textMesh.transform.);
+				while (numChars < Value.Length)
 				{
+					CharacterInfo charInfo;
+					textMesh.font.GetCharacterInfo(Value[Value.Length - (numChars + 1)], out charInfo, textMesh.fontSize);
+					float charWidth = charInfo.width * textMesh.gameObject.transform.localScale.x * .1f;
+					if (charWidth + size > boundingSize)
+					{
+						break;
+					}
+					text = Value[Value.Length - (numChars + 1)] + text;
+					size += charWidth;
+					numChars++;
 					//BoundingObject.GetComponent<MeshFilter>().mesh.bounds;
-				}*/
-				gameObject.GetComponentInChildren<TextMesh>().text = Value;
+				}
+				gameObject.GetComponentInChildren<TextMesh>().text = text;
 			}
 		}
 		
-		void Start()
+		protected override void Start()
 		{
 	        base.Start();
 			OnPush += new OnPushEvent(FocusInput);

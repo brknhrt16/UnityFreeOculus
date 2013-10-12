@@ -14,8 +14,9 @@ namespace Gui3D
 		public delegate void OnUnCheckEvent();
 		public event OnUnCheckEvent OnUnCheck;
 		
-		void Start()
+		protected override void Start()
 		{
+			base.Start();
 			OnPush += new OnPushEvent(OnClick);
 		}
 		
