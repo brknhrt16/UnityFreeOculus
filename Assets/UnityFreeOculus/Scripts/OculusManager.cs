@@ -7,7 +7,7 @@ public class OculusManager : MonoBehaviour {
 	
 	private IEnumerator DelayResetForward()
 	{
-		yield return new WaitForSeconds(.5f);
+		yield return new WaitForSeconds(.25f);
 		Oculus.ResetForward();
 	}
 	

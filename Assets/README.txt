@@ -1,6 +1,5 @@
 ---Enabling the Oculus Rift---
-Copy everything in Assets > Resources > BuildDependencies into your build directory (with your exe).
-Delete the Assets > Resources > BuildDependencies folder in your project.
+Copy everything in Assets > WebPlayerTemplates > BuildDependencies into your build directory (with your exe).
 Add an Assets > UnityFreeOculus > Prefabs > OculusManager to your scene.
 Add a Assets > UnityFreeOculus > Prefabs > UfoCamera or UfoPlayer to track head motion.
 If you are using your own camera:
