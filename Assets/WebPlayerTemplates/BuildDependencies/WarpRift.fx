@@ -3,17 +3,20 @@
 sampler2D TexMap0;
 sampler2D TexMap1;
 
+
+
 float2 Warp(float2 Tex : TEXCOORD0)
 {
-  float2 newPos = Tex;
-  float c = -81.0f/10.0f;
-  float u = Tex.x*2.0f - 1.0f;
-  float v = Tex.y*2.0f - 1.0f;
-  newPos.x = c*u/(pow(v, 2) + c);
-  newPos.y = c*v/(pow(u, 2) + c);
-  newPos.x = (newPos.x + 1.0f)*0.5f;
-  newPos.y = (newPos.y + 1.0f)*0.5f;
-  return newPos;
+    float a = 0.20f;
+	float b = 0.00f;
+	float c = 0.00f;
+	float d = 1 - (a + b + c);
+	float2 fragPos = Tex * 2.0f - float2(1.f,1.f);
+	float destR = length(fragPos);
+	float srcR = a * pow(destR,4) + b * pow(destR,3) + c * pow(destR,2) + d * destR;
+	float2 correctedRadial = normalize(fragPos) * srcR;
+	float2 uv = (correctedRadial/2.0f) + float2(0.5f, 0.5f);
+    return uv  ;
 }
 
 float4 SBSRift(float2 Tex : TEXCOORD0) : COLOR
